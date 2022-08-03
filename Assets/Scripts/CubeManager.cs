@@ -39,9 +39,4 @@ public class CubeManager : MonoBehaviour
         cube.gameObject.SetActive(true);
         isSpawn = false;
     }
-    //public void Combine_Cubes()
-    //{
-    //    cube = Instantiate(Cube_PreFabs[cube_Random_Index + 1], cube.transform.position, Quaternion.identity).GetComponent<CubeMove>();
-    //    cube.gameObject.SetActive(true);
-    //}
 }
