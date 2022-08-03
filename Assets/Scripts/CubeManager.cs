@@ -7,11 +7,15 @@ public class CubeManager : MonoBehaviour
 {
     [SerializeField] public GameObject[] Cube_PreFabs;
     [SerializeField] Score score;
+    [SerializeField] admob Ad;
+    private int cubeCount;
     public int cube_Random_Index;
     private Vector3 startPosition;
     private CubeMove cube;
     private bool isSpawn;
     private float delay = 0.3f;
+
+
     private void Awake()
     {
         startPosition = transform.position;
@@ -30,6 +34,7 @@ public class CubeManager : MonoBehaviour
     }
     public async void Spawn_CubePrefab()
     {
+        cubeCount++;
         isSpawn = true;
         cube_Random_Index = Random.Range(0, 10);
         await Task.Delay(System.TimeSpan.FromSeconds(delay));
@@ -38,5 +43,11 @@ public class CubeManager : MonoBehaviour
         cube.SetScore(score);
         cube.gameObject.SetActive(true);
         isSpawn = false;
+
+        if (cubeCount==10)
+        {
+            Ad.ShowInterstitial();
+            cubeCount = 0;
+        }
     }
 }
